@@ -54,7 +54,7 @@ global $conn;
 </nav>
 
 <div class="container box col-lg-6">
-    <form method="post" action="store.php">
+    <form method="post" action="insert.php">
         <div class="card mt-5">
             <div class="card-header">
                 Select the client
@@ -62,8 +62,8 @@ global $conn;
             <div class="card-body">
                 <div class="mb-3">
 
-<!--                    <label for="clientName" class="form-label">Client Name</label>-->
-<!--                    <input type="text" class="form-control" id="clientName" name="clientName">-->
+                    <!--                    <label for="clientName" class="form-label">Client Name</label>-->
+                    <!--                    <input type="text" class="form-control" id="clientName" name="clientName">-->
 
                     <label for="clientName"></label>
                     <select class="form-control" id="clientName" name="clientName" required>
@@ -89,16 +89,28 @@ global $conn;
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="productName" class="form-label">Product Name</label>
-                            <input type="text" class="form-control" id="productName" name="productName[]" required>
+                            <!--                            <input type="text" class="form-control" id="productName" name="productName[]" required>-->
+
+                            <select class="form-control" id="clientName"    required name="productName[]">
+                                <option value="-1">-- Select --</option>
+                                <?php
+                                $l1 = mysqli_query($conn, "SELECT pname FROM products");
+                                while ($l2 = mysqli_fetch_array($l1)) {
+                                    echo "<option value='" . $l2['pname'] . "'>" . $l2['pname'] . "</option>";
+                                }
+                                ?>
+                            </select>
+
                         </div>
 
                         <div class="mb-3 col-lg-3">
                             <label for="productQuantity" class="form-label">Quantity</label>
-                            <input type="number" class="form-control" id="productQuantity" name="productQuantity[]" required >
+                            <input type="number" class="form-control" id="productQuantity" name="productQuantity[]"
+                                   required>
                         </div>
                         <div class="mb-3 col-lg-3">
                             <label for="productPrice" class="form-label">Price</label>
-                            <input type="number" class="form-control" id="productPrice" name="productPrice[]"  required>
+                            <input type="number" class="form-control" id="productPrice" name="productPrice[]" required>
                         </div>
                     </div>
 
@@ -108,18 +120,27 @@ global $conn;
                             <div class="row mt-3">
                                 <div class="col-lg-6 field_wrapper">
                                     <label for="productName" class="form-label">Product Name </label>
-                                    <input type="text" class="form-control" id="productName" name="productName[]" >
+<!--                                    <input type="text" class="form-control" id="productName" name="productName[]">-->
+                                    <select class="form-control" id="clientName"  required name="productName[]">
+                                        <option value="-1">-- Select --</option>
+                                        <?php
+                                        $l1 = mysqli_query($conn, "SELECT pname FROM products");
+                                        while ($l2 = mysqli_fetch_array($l1)) {
+                                            echo "<option value='" . $l2['pname'] . "'>" . $l2['pname'] . "</option>";
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
 
                                 <div class="mb-3 col-lg-3">
                                     <label for="productQuantity" class="form-label">Quantity</label>
                                     <input type="number" class="form-control" id="productQuantity"
-                                           name="productQuantity[]" >
+                                           name="productQuantity[]">
                                 </div>
                                 <div class="mb-3 col-lg-3">
                                     <label for="productPrice" class="form-label">Price</label>
                                     <input type="number" class="form-control" id="productPrice"
-                                           name="productPrice[]" >
+                                           name="productPrice[]">
                                 </div>
 
                                 <div class="input-group-addon">

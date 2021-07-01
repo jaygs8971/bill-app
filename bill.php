@@ -37,7 +37,7 @@ include('conn.php');
     global $conn;
     global $order_id;
 
-    $s1 = mysqli_query($conn, "SELECT o_id FROM orders order by id DESC LIMIT 1");
+    $s1 = mysqli_query($conn, "SELECT * FROM orders_table order by o_id DESC LIMIT 1");
     $s2 = mysqli_fetch_assoc($s1);
     ?>
 
@@ -76,7 +76,8 @@ include('conn.php');
                 <span>Invoice no:</span> <?php echo $s2['o_id'] ?>
             </div>
             <div class="col-lg-6">
-                <span>Invoice Date:</span> <?php echo date('l, M d, Y'); ?>
+                <span>Invoice Date:</span> <?php
+                echo $s2['o_date']; ?>
             </div>
         </div>
 
@@ -94,7 +95,7 @@ include('conn.php');
             <?php
             $gt = 0;
 
-            $s3 = mysqli_query($conn, "SELECT * FROM orders WHERE o_id = '$s2[o_id]'");
+            $s3 = mysqli_query($conn, "SELECT * FROM order_details WHERE o_id = '$s2[o_id]'");
             //            $s3 = mysqli_query($conn, "SELECT * FROM orders WHERE o_id = '$s2[o_id]'");
             while ($row = mysqli_fetch_assoc($s3)) {
                 $s4 = mysqli_query($conn, "SELECT pname FROM products WHERE p_id = '$row[p_id]'");
@@ -102,7 +103,7 @@ include('conn.php');
 
                     $field1name = $s5['pname'];
                     $field2name = $row["qty"];
-                    $field3name = $row["pcost"];
+                    $field3name = $row["price"];
                     $field4name = $row["total"];
 
                     $gt = $gt + $field4name;
@@ -134,18 +135,18 @@ include('conn.php');
                     <tbody>
                     <tr>
                         <td>Subtotal</td>
-                        <td> <?php global $gt;
-                            echo "₹" . $gt; ?> </td>
+                        <td> <?php
+
+                            echo "₹" . $s2['subtotal']; ?> </td>
                     </tr>
                     <tr>
                         <td>Tax <b>(18%)</b></td>
-                        <td> <?php $tax = 0.18 * $gt;
-                            echo "₹" . $tax; ?> </td>
+                        <td> <?php echo $s2['tax']; ?> </td>
 
                     </tr>
                     <tr>
                         <td>Total</td>
-                        <td> <?php echo "₹" . $tax + $gt; ?> </td>
+                        <td> <?php echo "₹" . $s2['total']; ?> </td>
 
                     </tr>
                     </tbody>

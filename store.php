@@ -9,7 +9,7 @@ if (isset($_POST["submit"])) {
     $pqty = $_POST["productQuantity"];
     $pprice = $_POST["productPrice"];
 
-    if ($cName == "-1")
+    if ($cName == "-1") #check if name is selected
     {
         echo "<script type='text/javascript'>alert(\"Client is not selected!\");</script>";
         header("refresh:0;url=index.php");

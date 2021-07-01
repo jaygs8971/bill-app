@@ -1,7 +1,6 @@
 <?php
 include('conn.php');
 if (isset($_POST["submit"])) {
-    echo '<script type="text/javascript">alert("as");</script>';
 
     global $conn;
     $order_id = 2021001;

@@ -89,16 +89,16 @@ global $conn;
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="productName" class="form-label">Product Name</label>
-                            <input type="text" class="form-control" id="productName" name="productName[]" >
+                            <input type="text" class="form-control" id="productName" name="productName[]" required>
                         </div>
 
                         <div class="mb-3 col-lg-3">
                             <label for="productQuantity" class="form-label">Quantity</label>
-                            <input type="number" class="form-control" id="productQuantity" name="productQuantity[]"  >
+                            <input type="number" class="form-control" id="productQuantity" name="productQuantity[]" required >
                         </div>
                         <div class="mb-3 col-lg-3">
                             <label for="productPrice" class="form-label">Price</label>
-                            <input type="number" class="form-control" id="productPrice" name="productPrice[]"  >
+                            <input type="number" class="form-control" id="productPrice" name="productPrice[]"  required>
                         </div>
                     </div>
 

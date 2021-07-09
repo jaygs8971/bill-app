@@ -15,15 +15,12 @@ include('conn.php');
 global $conn;
 $sql = mysqli_query($conn, "SELECT * FROM orders_table");
 
-
 while ($sql2 = mysqli_fetch_assoc($sql)) {
-
 
 $sql3 = mysqli_query($conn, "SELECT * FROM client WHERE c_id = '$sql2[c_id]'")
 ?>
 
 <div class="container col-lg-6 border mt-4 pt-4 pb-4 mb-4">
-
 
     <!--                <div class="card">-->
     <!--                    <div class="card-body">-->
@@ -47,7 +44,6 @@ $sql3 = mysqli_query($conn, "SELECT * FROM client WHERE c_id = '$sql2[c_id]'")
             <input type="text" hidden name="my_ord" value="<?php echo $sql2['o_id']; ?> ">
         </div>
         <input type="submit" value="Check" class="btn btn-success mt-3" name="check">
-
     </form>
 </div>
 </html>

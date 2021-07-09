@@ -105,7 +105,6 @@ if (isset($_POST['check'])) {
         $gt = 0;
 
         $s3 = mysqli_query($conn, "SELECT * FROM order_details WHERE o_id = '$s2[o_id]'");
-        //            $s3 = mysqli_query($conn, "SELECT * FROM orders WHERE o_id = '$s2[o_id]'");
         while ($row = mysqli_fetch_assoc($s3)) {
             $s4 = mysqli_query($conn, "SELECT pname FROM products WHERE p_id = '$row[p_id]'");
             while ($s5 = mysqli_fetch_array($s4)) {
